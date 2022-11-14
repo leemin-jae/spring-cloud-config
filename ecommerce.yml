@@ -16,6 +16,9 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL57Dialect
+  redis:
+    host: k7c103.p.ssafy.io
+    port: 6379
   data:
     web:
       pageable:
