@@ -5,4 +5,47 @@ jwt:
 spring:
   mvc:
     pathmatch:
-      matching-strategy: ant_path_matcher 
+      matching-strategy: ant_path_matcher
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming:
+        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL57Dialect
+  data:
+    web:
+      pageable:
+        one-indexed-parameters: true
+
+  datasource:
+    url: jdbc:mysql://k7c103.p.ssafy.io:3306/doghoogam?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul&zeroDateTimeBehavior=convertToNull&rewriteBatchedStatements=true&useLegacyDatetimeCode=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      username: c103
+      password: "!c103finalproject"
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+            client-id: 9acb3e1fec7d5dcfa3a8577c21d604da
+            client-secret: UQmeiRtYD5EyWqsQwI91DV6dpCUfmD8n
+            client-authentication-method: post
+            redirect-uri: "{baseUrl}/{action}/oauth2/code/{registrationId}"
+            authorization-grant-type: authorization_code
+            scope:
+              - profile_nickname
+              - account_email
+              - gender
+              - profile_image
+            client-name: Kakao
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize
+            token-uri: https://kauth.kakao.com/oauth/token
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            user-name-attribute: id
